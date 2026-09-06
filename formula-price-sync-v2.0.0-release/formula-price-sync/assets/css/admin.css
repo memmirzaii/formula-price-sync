@@ -1,0 +1,1338 @@
+/**
+ * Formula Price Sync – Admin Styles v2.0
+ * 
+ * Premium Iranian commercial design system for WooCommerce gold & currency pricing plugin
+ * 
+ * Design Principles:
+ * - Premium feel with sophisticated amber/gold accent palette
+ * - Sophisticated spacing system using CSS custom properties
+ * - Fully optimized for RTL (Right-to-Left) layouts
+ * - Subtle micro-interactions and animations
+ * - Optional dark mode support via prefers-color-scheme
+ * - Modern card-based layout with elevated surfaces
+ * - Accessible color contrast and touch targets
+ */
+
+/* ── Design Tokens & Premium Color Palette ──────────────────────── */
+:root {
+    /* === Premium Color System === */
+    /* Primary - Sophisticated Amber/Gold for premium feel */
+    --fps-color-primary:          #d97706;   /* amber-600 */
+    --fps-color-primary-dark:     #b45309;   /* amber-700 */
+    --fps-color-primary-light:    #fef3c7;   /* amber-100 */
+    --fps-color-primary-lighter:  #fffbeb;   /* amber-50 */
+    
+    /* Neutral - Sophisticated gray system */
+    --fps-color-background:       #f8fafc;   /* slate-50 */
+    --fps-color-surface:          #ffffff;
+    --fps-color-surface-variant:  #f1f5f9;   /* slate-100 */
+    --fps-color-border:           #e2e8f0;   /* slate-200 */
+    --fps-color-border-light:     #f1f5f9;   /* slate-100 */
+    --fps-color-text-primary:     #0f172a;   /* slate-900 */
+    --fps-color-text-secondary:   #475569;   /* slate-600 */
+    --fps-color-text-muted:       #64748b;   /* slate-500 */
+    --fps-color-text-light:       #94a3b8;   /* slate-400 */
+    
+    /* Status Colors */
+    --fps-color-success:          #059669;   /* emerald-600 */
+    --fps-color-success-light:    #d1fae5;   /* emerald-100 */
+    --fps-color-warning:          #d97706;   /* amber-600 (same as primary) */
+    --fps-color-warning-light:    #fef3c7;   /* amber-100 */
+    --fps-color-error:            #dc2626;   /* red-600 */
+    --fps-color-error-light:      #fef2f2;   /* red-100 */
+    --fps-color-info:             #2563eb;   /* blue-600 */
+    --fps-color-info-light:       #dbeafe;   /* blue-100 */
+    
+    /* Interactive States */
+    --fps-color-switch-on:        var(--fps-color-primary);
+    --fps-color-switch-off:       var(--fps-color-text-light);
+    
+    /* Legacy CSS Variable Aliases (for backward compatibility) */
+    --fps-color-accent:           var(--fps-color-primary);
+    --fps-color-accent-soft:      var(--fps-color-primary-light);
+    --fps-color-accent-dark:      var(--fps-color-primary-dark);
+    --fps-color-bg:               var(--fps-color-background);
+    --fps-color-text:             var(--fps-color-text-primary);
+    --fps-gap-xs:                 var(--fsp-space-1);
+    --fps-gap-sm:                 var(--fsp-space-2);
+    --fps-gap-md:                 var(--fsp-space-4);
+    --fps-gap-lg:                 var(--fsp-space-6);
+    --fps-gap-xl:                 var(--fsp-space-8);
+    
+    /* === Elevation & Shadows === */
+    --fps-shadow-none:            0 0 #0000;
+    --fps-shadow-xs:              0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --fps-shadow-sm:              0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --fps-shadow-md:              0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --fps-shadow-lg:              0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --fps-shadow-xl:              0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --fps-shadow-inner-sm:        inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    
+    /* === Radii & Corner System === */
+    --fps-radius-none:            0px;
+    --fps-radius-xs:              2px;
+    --fps-radius-sm:              4px;
+    --fps-radius-md:              6px;
+    --fps-radius-lg:              8px;
+    --fps-radius-xl:              12px;
+    --fps-radius-2xl:             16px;
+    --fps-radius-full:            9999px;
+    
+    /* === Spacing System (8px grid) === */
+    --fsp-space-0:                0px;
+    --fsp-space-px:               1px;
+    --fsp-space-0-5:              2px;
+    --fsp-space-1:                4px;
+    --fsp-space-1-5:              6px;
+    --fsp-space-2:                8px;
+    --fsp-space-2-5:              10px;
+    --fsp-space-3:                12px;
+    --fsp-space-3-5:              14px;
+    --fsp-space-4:                16px;
+    --fsp-space-5:                20px;
+    --fsp-space-6:                24px;
+    --fsp-space-7:                28px;
+    --fsp-space-8:                32px;
+    --fsp-space-9:                36px;
+    --fsp-space-10:               40px;
+    --fsp-space-11:               44px;
+    --fsp-space-12:               48px;
+    --fsp-space-14:               56px;
+    --fsp-space-16:               64px;
+    --fsp-space-20:               80px;
+    --fsp-space-24:               96px;
+    
+    /* === Typography System === */
+    --fps-font-sans:              "Tahoma", "Segoe UI", "Arial", sans-serif;
+    --fps-font-mono:              "Courier New", monospace;
+    
+    --fps-text-xs:                0.75rem;   /* 12px */
+    --fps-text-sm:                0.875rem;  /* 14px */
+    --fps-text-base:              1rem;      /* 16px */
+    --fps-text-lg:                1.125rem;  /* 18px */
+    --fps-text-xl:                1.25rem;   /* 20px */
+    --fps-text-2xl:               1.5rem;    /* 24px */
+    --fps-text-3xl:               1.875rem;  /* 30px */
+    --fps-text-4xl:               2.25rem;   /* 36px */
+    
+    --fps-font-weight-thin:       100;
+    --fps-font-weight-extralight: 200;
+    --fps-font-weight-light:      300;
+    --fps-font-weight-normal:     400;
+    --fps-font-weight-medium:     500;
+    --fps-font-weight-semibold:   600;
+    --fps-font-weight-bold:       700;
+    --fps-font-weight-extrabold:  800;
+    --fps-font-weight-black:      900;
+    
+    --fps-leading-none:           1;
+    --fps-leading-tight:          1.25;
+    --fps-leading-snug:           1.375;
+    --fps-leading-normal:         1.5;
+    --fps-leading-relaxed:        1.625;
+    --fps-leading-loose:          2;
+    
+    /* === Transition & Animation === */
+    --fps-transition-default:     150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --fps-transition-fast:        75ms cubic-bezier(0.4, 0, 0.2, 1);
+    --fps-transition-slow:        200ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --fps-animation-in:           150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --fps-animation-out:          75ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* === Z-index System === */
+    --fps-z-index-dropdown:       1000;
+    --fps-z-index-sticky:         1020;
+    --fps-z-index-fixed:          1030;
+    --fps-z-index-modal-backdrop: 1040;
+    --fps-z-index-modal:          1050;
+    --fps-z-index-popover:        1060;
+    --fps-z-index-tooltip:        1070;
+}
+
+/* Dark Mode Support - Automatic based on system preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark Mode Colors */
+        --fps-color-background:   #0f172a;   /* slate-900 */
+        --fps-color-surface:      #1e293b;   /* slate-800 */
+        --fps-color-surface-variant: #334155; /* slate-700 */
+        --fps-color-border:       #475569;   /* slate-600 */
+        --fps-color-border-light: #334155;   /* slate-700 */
+        --fps-color-text-primary: #f8fafc;   /* slate-50 */
+        --fps-color-text-secondary: #e2e8f0; /* slate-200 */
+        --fps-color-text-muted:   #94a3b8;   /* slate-400 */
+        --fps-color-text-light:   #64748b;   /* slate-500 */
+        
+        /* Dark mode status colors (maintain vibrancy) */
+        --fps-color-success:      #10b981;   /* emerald-500 */
+        --fps-color-success-light:#064e3b;   /* emerald-900/20 */
+        --fps-color-warning:      #f59e0b;   /* amber-500 */
+        --fps-color-warning-light:#92400e;   /* amber-900/20 */
+        --fps-color-error:        #ef4444;   /* red-500 */
+        --fps-color-error-light:  #7f1d1d;   /* red-900/20 */
+        --fps-color-info:         #3b82f6;   /* blue-500 */
+        --fps-color-info-light:   #1e3a8a;   /* blue-900/20 */
+        
+        /* Dark mode elevation (subtler in dark) */
+        --fps-shadow-sm:          0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+        --fps-shadow-md:          0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        --fps-shadow-lg:          0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Optional class-based dark mode (for future toggle implementation) */
+.dark-mode {
+    --fps-color-background:   #0f172a;
+    --fps-color-surface:      #1e293b;
+    --fps-color-surface-variant: #334155;
+    --fps-color-border:       #475569;
+    --fps-color-border-light: #334155;
+    --fps-color-text-primary: #f8fafc;
+    --fps-color-text-secondary: #e2e8f0;
+    --fps-color-text-muted:   #94a3b8;
+    --fps-color-text-light:   #64748b;
+    
+    --fps-color-success:      #10b981;
+    --fps-color-success-light:#064e3b;
+    --fps-color-warning:      #f59e0b;
+    --fps-color-warning-light:#92400e;
+    --fps-color-error:        #ef4444;
+    --fps-color-error-light:  #7f1d1d;
+    --fps-color-info:         #3b82f6;
+    --fps-color-info-light:   #1e3a8a;
+    
+    --fps-shadow-sm:          0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    --fps-shadow-md:          0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --fps-shadow-lg:          0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Base Resets & Foundation ─────────────────────────────────── */
+.fps-admin-wrap {
+    font-family: var(--fps-font-sans);
+    direction: rtl;
+    text-align: right;
+    color: var(--fps-color-text-primary);
+    background-color: var(--fps-color-background);
+    min-height: 100vh;
+    line-height: var(--fps-leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure proper RTL handling for specific elements */
+.fps-admin-wrap *[dir="rtl"],
+.fps-admin-wrap [dir="rtl"] * {
+    direction: rtl !important;
+}
+
+/* ── Premium Card System ──────────────────────────────────────── */
+.fps-card {
+    background-color: var(--fps-color-surface);
+    border: 1px solid var(--fps-color-border);
+    border-radius: var(--fps-radius-lg);
+    box-shadow: var(--fps-shadow-sm);
+    transition: var(--fps-transition-default);
+    position: relative;
+    overflow: hidden;
+}
+
+.fps-card:hover {
+    box-shadow: var(--fps-shadow-md);
+    border-color: var(--fps-color-border-light);
+}
+
+.fps-card:active {
+    transform: translateY(1px);
+}
+
+.fps-card-elevated {
+    box-shadow: var(--fps-shadow-lg);
+}
+
+.fps-card-elevated:hover {
+    box-shadow: var(--fps-shadow-xl);
+}
+
+.fps-card-outline {
+    background-color: transparent;
+    border: 2px solid var(--fps-color-border);
+    box-shadow: var(--fps-shadow-none);
+}
+
+.fps-card-outline:hover {
+    border-color: var(--fps-color-primary);
+    box-shadow: var(--fps-shadow-sm);
+}
+
+/* Card Header/Title */
+.fps-card-title {
+    font-size: var(--fps-text-lg);
+    font-weight: var(--fps-font-weight-semibold);
+    color: var(--fps-color-text-primary);
+    margin: 0 0 var(--fsp-space-4) 0;
+    padding: 0 0 var(--fsp-space-2) 0;
+    border-bottom: 1px solid var(--fps-color-border);
+    display: flex;
+    align-items: center;
+    gap: var(--fsp-space-3);
+}
+
+.fps-card-title::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--fps-color-primary), var(--fps-color-primary-dark));
+    border-radius: var(--fps-radius-xs);
+}
+
+.fps-card-title-sm {
+    font-size: var(--fps-text-base);
+    font-weight: var(--fps-font-weight-medium);
+    margin-bottom: var(--fsp-space-3);
+    padding-bottom: var(--fsp-space-1);
+}
+
+/* ── Enhanced Stats Cards (Modern & Premium) ──────────────────── */
+.fps-stat-card {
+    background: var(--fps-color-surface);
+    border: 1px solid var(--fps-color-border);
+    border-radius: var(--fps-radius-lg);
+    padding: var(--fsp-space-5);
+    text-align: center;
+    transition: var(--fps-transition-default);
+    position: relative;
+    overflow: hidden;
+}
+
+.fps-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--fps-shadow-md);
+    border-color: var(--fps-color-border-light);
+}
+
+.fps-stat-card:active {
+    transform: translateY(0);
+}
+
+.fps-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--fps-color-primary), var(--fps-color-primary-light));
+    opacity: 0;
+    transition: var(--fps-transition-fast);
+}
+
+.fps-stat-card:hover::before {
+    opacity: 1;
+}
+
+.fps-stat-card.primary::before {
+    background: linear-gradient(90deg, var(--fps-color-primary), var(--fps-color-primary-light));
+}
+
+.fps-stat-card.success::before {
+    background: linear-gradient(90deg, var(--fps-color-success), var(--fps-color-success-light));
+}
+
+.fps-stat-card.warning::before {
+    background: linear-gradient(90deg, var(--fps-color-warning), var(--fps-color-warning-light));
+}
+
+.fps-stat-card.error::before {
+    background: linear-gradient(90deg, var(--fps-color-error), var(--fps-color-error-light));
+}
+
+.fps-stat-card.info::before {
+    background: linear-gradient(90deg, var(--fps-color-info), var(--fps-color-info-light));
+}
+
+.fps-stat-number {
+    font-size: var(--fps-text-3xl);
+    font-weight: var(--fps-font-weight-bold);
+    color: var(--fps-color-text-primary);
+    line-height: var(--fps-leading-snug);
+    display: block;
+    margin-bottom: var(--fsp-space-2);
+    font-variant-numeric: tabular-nums;
+}
+
+.fps-stat-label {
+    font-size: var(--fps-text-sm);
+    font-weight: var(--fps-font-weight-medium);
+    color: var(--fps-color-text-muted);
+    display: block;
+    margin-top: var(--fsp-space-1);
+}
+
+/* Wide stat card for full-width usage */
+.fps-stat-card.fps-stat-wide {
+    border-radius: var(--fps-radius-xl);
+    padding: var(--fsp-space-6);
+}
+
+.fps-stat-card.fps-stat-wide .fps-stat-number {
+    font-size: var(--fps-text-2xl);
+}
+
+/* ── Premium Form System ─────────────────────────────────────── */
+.fps-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--fsp-space-5);
+    margin-bottom: var(--fsp-space-5);
+}
+
+.fps-form-row:last-child {
+    margin-bottom: 0;
+}
+
+.fps-form-label {
+    min-width: 140px;
+    font-weight: var(--fps-font-weight-semibold);
+    font-size: var(--fps-text-base);
+    color: var(--fps-color-text-primary);
+    padding-top: var(--fsp-space-1-5);
+    flex-shrink: 0;
+}
+
+.fps-form-field {
+    flex: 1 1 200px;
+    min-width: 0;
+}
+
+.fps-form-field-full {
+    flex: 1 1 100%;
+}
+
+.fps-form-field input[type="text"],
+.fps-form-field input[type="number"],
+.fps-form-field input[type="url"],
+.fps-form-field input[type="email"],
+.fps-form-field input[type="password"],
+.fps-form-field select,
+.fps-form-field textarea {
+    width: 100%;
+    padding: var(--fsp-space-2) var(--fsp-space-3);
+    border: 2px solid var(--fps-color-border);
+    border-radius: var(--fps-radius-md);
+    font-size: var(--fps-text-base);
+    font-family: inherit;
+    color: var(--fps-color-text-primary);
+    background-color: var(--fps-color-surface);
+    box-shadow: var(--fps-shadow-xs) inset;
+    transition: var(--fps-transition-default);
+    box-sizing: border-box;
+}
+
+.fps-form-field input[type="text"]:focus,
+.fps-form-field input[type="number"]:focus,
+.fps-form-field input[type="url"]:focus,
+.fps-form-field input[type="email"]:focus,
+.fps-form-field input[type="password"]:focus,
+.fps-form-field select:focus,
+.fps-form-field textarea:focus {
+    outline: none;
+    border-color: var(--fps-color-primary);
+    box-shadow: 
+        0 0 0 3px rgba(217, 119, 6, 0.15),
+        var(--fps-shadow-xs) inset;
+}
+
+.fps-form-field input[type="text"]:hover,
+.fps-form-field input[type="number"]:hover,
+.fps-form-field input[type="url"]:hover,
+.fps-form-field input[type="email"]:hover,
+.fps-form-field input[type="password"]:hover,
+.fps-form-field select:hover,
+.fps-form-field textarea:hover {
+    border-color: var(--fps-color-border-light);
+}
+
+/* Textarea specific styling */
+.fps-form-field textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Select arrow for better UX */
+.fps-form-field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left var(--fsp-space-3) center;
+    background-size: 1em;
+    padding-right: calc(2.5em + var(--fsp-space-3));
+    direction: ltr; /* Keep select arrow LTR for consistency */
+}
+
+.fps-form-field select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23d97706' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+}
+
+/* ── Advanced Toggle Switch System ───────────────────────────── */
+.fps-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: var(--fsp-space-5);
+    padding: var(--fsp-space-3) 0;
+}
+
+.fps-toggle-label {
+    font-size: var(--fps-text-base);
+    font-weight: var(--fps-font-weight-medium);
+    color: var(--fps-color-text-primary);
+    flex-shrink: 0;
+}
+
+.fps-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.fps-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.fps-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: var(--fps-color-switch-off);
+    border-radius: var(--fps-radius-full);
+    transition: var(--fps-transition-default);
+    border: 2px solid var(--fps-color-border);
+}
+
+.fps-toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--fps-color-surface);
+    top: 2px;
+    right: 2px;
+    transition: var(--fps-transition-default);
+    box-shadow: var(--fps-shadow-sm);
+}
+
+.fps-toggle-switch input:checked + .fps-toggle-slider {
+    background-color: var(--fps-color-switch-on);
+    border-color: var(--fps-color-switch-on);
+}
+
+.fps-toggle-switch input:checked + .fps-toggle-slider::before {
+    transform: translateX(-22px);
+    background-color: var(--fps-color-surface);
+}
+
+.fps-toggle-switch:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.fps-toggle-switch:disabled .fps-toggle-slider {
+    background-color: var(--fps-color-border);
+}
+
+/* ── Premium Button System ───────────────────────────────────── */
+.fps-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--fsp-space-2);
+    padding: var(--fsp-space-2-5) var(--fsp-space-4);
+    border: none;
+    border-radius: var(--fps-radius-md);
+    font-size: var(--fps-text-base);
+    font-weight: var(--fps-font-weight-semibold);
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--fps-transition-default);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+}
+
+.fps-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: var(--fps-transition-slow);
+}
+
+.fps-btn:hover::before {
+    left: 100%;
+}
+
+.fps-btn:active {
+    transform: scale(0.97);
+}
+
+.fps-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Button Variants */
+.fps-btn-primary {
+    background-color: var(--fps-color-primary);
+    color: white;
+    box-shadow: var(--fps-shadow-sm);
+}
+
+.fps-btn-primary:hover {
+    background-color: var(--fps-color-primary-dark);
+    box-shadow: var(--fps-shadow-md);
+}
+
+.fps-btn-primary:active {
+    background-color: var(--fps-color-primary-dark);
+    transform: scale(0.97);
+}
+
+.fps-btn-secondary {
+    background-color: var(--fps-color-surface);
+    color: var(--fps-color-text-primary);
+    border: 2px solid var(--fps-color-border);
+}
+
+.fps-btn-secondary:hover {
+    background-color: var(--fps-color-surface-variant);
+    border-color: var(--fps-color-border-light);
+    box-shadow: var(--fps-shadow-sm);
+}
+
+.fps-btn-secondary:active {
+    background-color: var(--fps-color-border-light);
+}
+
+.fps-btn-outline {
+    background-color: transparent;
+    color: var(--fps-color-text-primary);
+    border: 2px solid var(--fps-color-border);
+}
+
+.fps-btn-outline:hover {
+    background-color: var(--fps-color-surface-variant);
+    border-color: var(--fps-color-primary);
+    color: var(--fps-color-primary);
+}
+
+.fps-btn-outline:active {
+    background-color: var(--fps-color-border-light);
+}
+
+.fps-btn-success {
+    background-color: var(--fps-color-success);
+    color: white;
+}
+
+.fps-btn-success:hover {
+    background-color: #047857; /* emerald-700 */
+}
+
+.fps-btn-danger {
+    background-color: var(--fps-color-error);
+    color: white;
+}
+
+.fps-btn-danger:hover {
+    background-color: #b91c1c; /* red-700 */
+}
+
+.fps-btn-info {
+    background-color: var(--fps-color-info);
+    color: white;
+}
+
+.fps-btn-info:hover {
+    background-color: #1d4ed8; /* blue-700 */
+}
+
+/* Button Sizes */
+.fps-btn-sm {
+    padding: var(--fsp-space-1-5) var(--fsp-space-3);
+    font-size: var(--fps-text-sm);
+}
+
+.fps-btn-lg {
+    padding: var(--fsp-space-3) var(--fsp-space-5);
+    font-size: var(--fps-text-lg);
+    font-weight: var(--fps-font-weight-bold);
+}
+
+.fps-btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* ── Unit Switcher (Rial/Toman) - Enhanced ───────────────────── */
+.fps-unit-switcher {
+    display: flex;
+    gap: var(--fsp-space-2);
+    margin-bottom: var(--fsp-space-4);
+    flex-wrap: wrap;
+}
+
+.fps-unit-btn {
+    flex: 1 1 120px;
+    min-width: 80px;
+    padding: var(--fsp-space-2) var(--fsp-space-3);
+    border: 2px solid var(--fps-color-border);
+    border-radius: var(--fps-radius-md);
+    background-color: var(--fps-color-surface);
+    cursor: pointer;
+    font-size: var(--fps-text-base);
+    font-weight: var(--fps-font-weight-semibold);
+    font-family: inherit;
+    color: var(--fps-color-text-muted);
+    transition: var(--fps-transition-default);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.fps-unit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    transition: var(--fps-transition-fast);
+}
+
+.fps-unit-btn:hover {
+    border-color: var(--fps-color-primary);
+    color: var(--fps-color-primary);
+    box-shadow: var(--fps-shadow-sm);
+    transform: translateY(-1px);
+}
+
+.fps-unit-btn:active {
+    transform: translateY(0);
+}
+
+.fps-unit-btn.active {
+    border-color: var(--fps-color-primary);
+    background-color: var(--fps-color-primary-light);
+    color: var(--fps-color-primary-dark);
+    font-weight: var(--fps-font-weight-bold);
+    box-shadow: var(--fps-shadow-sm);
+}
+
+.fps-unit-btn.active::before {
+    background-color: var(--fps-color-primary);
+    height: 3px;
+}
+
+/* ── Enhanced Notification System ─────────────────────────────── */
+.fps-notice {
+    padding: var(--fsp-space-3) var(--fsp-space-4);
+    border-radius: var(--fps-radius-md);
+    font-size: var(--fps-text-base);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--fsp-space-3);
+    margin-bottom: var(--fsp-space-4);
+    border-left: 4px solid;
+    position: relative;
+    overflow: hidden;
+}
+
+.fps-notice::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    opacity: 0.5;
+    transition: var(--fps-transition-fast);
+}
+
+.fps-notice:hover::before {
+    opacity: 0.3;
+}
+
+.fps-notice-info {
+    background-color: var(--fps-color-info-light);
+    color: var(--fps-color-info);
+    border-left-color: var(--fps-color-info);
+}
+
+.fps-notice-success {
+    background-color: var(--fps-color-success-light);
+    color: var(--fps-color-success);
+    border-left-color: var(--fps-color-success);
+}
+
+.fps-notice-warning {
+    background-color: var(--fps-color-warning-light);
+    color: var(--fps-color-warning);
+    border-left-color: var(--fps-color-warning);
+}
+
+.fps-notice-error {
+    background-color: var(--fps-color-error-light);
+    color: var(--fps-color-error);
+    border-left-color: var(--fps-color-error);
+}
+
+.fps-notice-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--fsp-space-0-5);
+}
+
+.fps-notice-content {
+    flex: 1;
+}
+
+/* ── Enhanced Badge/Pill System ─────────────────────────────── */
+.fps-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--fsp-space-0-5) var(--fsp-space-2);
+    border-radius: var(--fps-radius-full);
+    font-size: var(--fps-text-xs);
+    font-weight: var(--fps-font-weight-semibold);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: baseline;
+}
+
+.fps-pill-primary {
+    background-color: var(--fps-color-primary-light);
+    color: var(--fps-color-primary-dark);
+}
+
+.fps-pill-success {
+    background-color: var(--fps-color-success-light);
+    color: var(--fps-color-success);
+}
+
+.fps-pill-warning {
+    background-color: var(--fps-color-warning-light);
+    color: var(--fps-color-warning);
+}
+
+.fps-pill-error {
+    background-color: var(--fps-color-error-light);
+    color: var(--fps-color-error);
+}
+
+.fps-pill-info {
+    background-color: var(--fps-color-info-light);
+    color: var(--fps-color-info);
+}
+
+.fps-pill-outline {
+    background-color: transparent;
+    border: 1px solid var(--fps-color-border);
+    color: var(--fps-color-text-muted);
+}
+
+.fps-pill-outline-primary {
+    border-color: var(--fps-color-primary);
+    color: var(--fps-color-primary);
+}
+
+/* ── Enhanced Tables & Data Display ──────────────────────────── */
+.fps-rates-table,
+.fps-logs-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: var(--fsp-space-3);
+    background-color: var(--fps-color-surface);
+    border-radius: var(--fps-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--fps-shadow-sm);
+}
+
+.fps-rates-table th,
+.fps-rates-table td,
+.fps-logs-table th,
+.fps-logs-table td {
+    padding: var(--fsp-space-2-5) var(--fsp-space-3);
+    text-align: right;
+    border-bottom: 1px solid var(--fps-color-border);
+    font-size: var(--fps-text-sm);
+}
+
+.fps-rates-table th,
+.fps-logs-table th {
+    background-color: var(--fps-color-surface-variant);
+    font-weight: var(--fps-font-weight-semibold);
+    color: var(--fps-color-text-muted);
+    text-transform: uppercase;
+    font-size: var(--fps-text-xs);
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--fps-color-border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.fps-rates-table tbody tr:last-child td,
+.fps-logs-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.fps-rates-table tbody tr:hover td,
+.fps-logs-table tbody tr:hover td {
+    background-color: var(--fps-color-surface-variant);
+}
+
+.fps-rates-table tbody tr:active td,
+.fps-logs-table tbody tr:active td {
+    background-color: var(--fps-color-border-light);
+}
+
+/* Special styling for rate table headers */
+.fps-rates-table th:nth-child(1) {
+    border-top-right-radius: var(--fps-radius-lg);
+}
+
+.fps-rates-table th:nth-last-child(1) {
+    border-top-left-radius: var(--fps-radius-lg);
+}
+
+/* Rate value highlighting */
+.fps-rates-table td.rate-value {
+    font-weight: var(--fps-font-weight-bold);
+    color: var(--fps-color-text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.fps-rates-table td.rate-value.positive {
+    color: var(--fps-color-success);
+}
+
+.fps-rates-table td.rate-value.negative {
+    color: var(--fps-color-error);
+}
+
+/* ── Enhanced Price Preview System ───────────────────────────── */
+.fps-preview-wrap {
+    background: var(--fps-color-surface-variant);
+    border: 2px solid var(--fps-color-border);
+    border-radius: var(--fps-radius-xl);
+    padding: var(--fsp-space-5);
+    margin-top: var(--fsp-space-4);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: var(--fps-transition-default);
+}
+
+.fps-preview-wrap:hover {
+    border-color: var(--fps-color-primary);
+    box-shadow: var(--fps-shadow-md);
+}
+
+.fps-preview-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--fps-color-primary), var(--fps-color-primary-light));
+}
+
+.fps-preview-price {
+    font-size: var(--fps-text-3xl);
+    font-weight: var(--fps-font-weight-bold);
+    color: var(--fps-color-text-primary);
+    font-family: var(--fps-font-mono);
+    display: block;
+    line-height: var(--fps-leading-snug);
+    margin-bottom: var(--fsp-space-2);
+    font-variant-numeric: tabular-nums;
+}
+
+.fps-preview-unit {
+    font-size: var(--fps-text-base);
+    font-weight: var(--fps-font-weight-medium);
+    color: var(--fps-color-text-muted);
+    display: block;
+}
+
+/* ── Enhanced Page Header ────────────────────────────────────── */
+.fps-page-header {
+    display: flex;
+    align-items: center;
+    gap: var(--fsp-space-4);
+    margin-bottom: var(--fsp-space-6);
+    padding-bottom: var(--fsp-space-3);
+    border-bottom: 1px solid var(--fps-color-border);
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.fps-page-header h1 {
+    font-size: var(--fps-text-2xl);
+    font-weight: var(--fps-font-weight-bold);
+    color: var(--fps-color-text-primary);
+    margin: 0;
+    line-height: var(--fps-leading-snug);
+    flex: 1 1 200px;
+}
+
+.fps-page-header .fps-logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--fps-color-primary-light);
+    border-radius: var(--fps-radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid var(--fps-color-border);
+    transition: var(--fps-transition-default);
+}
+
+.fps-page-header .fps-logo-icon:hover {
+    background-color: var(--fps-color-primary);
+    transform: scale(1.05);
+}
+
+/* ── Dashboard Grid System ───────────────────────────────────── */
+.fps-dashboard-grid {
+    display: grid;
+    gap: var(--fsp-space-4);
+    margin-top: var(--fsp-space-3);
+}
+
+.fps-dashboard-grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.fps-dashboard-grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.fps-dashboard-grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+/* ── Loading States & Feedback ───────────────────────────────── */
+.fps-col-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--fsp-space-2);
+    font-size: var(--fps-text-sm);
+    color: var(--fps-color-text-muted);
+    white-space: nowrap;
+}
+
+.fps-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--fps-color-border);
+    border-top-color: var(--fps-color-primary);
+    border-radius: 50%;
+    animation: fps-spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes fps-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Pulse animation for loading states */
+.fps-pulse {
+    animation: fps-pulse 2s ease-in-out infinite;
+}
+
+@keyframes fps-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ── Responsive Design ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .fps-form-row {
+        flex-direction: column;
+        gap: var(--fsp-space-3);
+    }
+    
+    .fps-form-label {
+        min-width: unset;
+        text-align: right;
+    }
+    
+    .fps-dashboard-grid-2,
+    .fps-dashboard-grid-3,
+    .fps-dashboard-grid-4 {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    
+    .fps-page-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--fsp-space-3);
+    }
+    
+    .fps-page-header h1 {
+        text-align: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .fps-unit-switcher {
+        flex-direction: column;
+    }
+    
+    .fps-unit-btn {
+        flex: 1 1 100%;
+    }
+    
+    .fps-btn-block {
+        width: 100%;
+    }
+    
+    .fps-stat-card.fps-stat-wide {
+        border-radius: var(--fps-radius-lg);
+        padding: var(--fsp-space-5);
+    }
+    
+    .fps-stat-card.fps-stat-wide .fps-stat-number {
+        font-size: var(--fps-text-xl);
+    }
+}
+
+/* ── Print Styles ────────────────────────────────────────────── */
+@media print {
+    .fps-admin-wrap {
+        background-color: white;
+        color: black;
+    }
+    
+    .fps-card,
+    .fps-stat-card,
+    .fps-btn {
+        box-shadow: none !important;
+        border-color: #ddd !important;
+    }
+    
+    .fps-btn-primary,
+    .fps-btn-secondary,
+    .fps-btn-success,
+    .fps-btn-danger,
+    .fps-btn-info {
+        background-color: white !important;
+        color: black !important;
+        border: 1px solid #ddd !important;
+    }
+    
+    .fps-spinner {
+        display: none;
+    }
+}
+
+/* ── Focus Enhancements for Accessibility ────────────────────── */
+*:focus-visible {
+    outline: 2px solid var(--fps-color-primary);
+    outline-offset: 2px;
+}
+
+/* Override for specific elements to prevent double outlines */
+.fps-form-field input:focus-visible,
+.fps-form-field select:focus-visible,
+.fps-form-field textarea:focus-visible,
+.fps-toggle-switch:focus-visible,
+.fps-unit-btn:focus-visible,
+.fps-btn:focus-visible {
+    outline: 2px solid var(--fps-color-primary);
+    outline-offset: 2px;
+    box-shadow: 
+        0 0 0 3px rgba(217, 119, 6, 0.25),
+        var(--fps-shadow-xs) inset;
+}
+
+/* ── Scrollbar Styling (WebKit) ──────────────────────────────── */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--fps-color-surface-variant);
+    border-radius: var(--fps-radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--fps-color-text-light);
+    border-radius: var(--fps-radius-full);
+    border: 2px solid var(--fps-color-surface);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--fps-color-text-muted);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--fps-color-text-light) var(--fps-color-surface-variant);
+}
+
+/* ── Animation Utilities ─────────────────────────────────────── */
+.fps-fade-in {
+    animation: fps-fade-in var(--fps-animation-in) ease-out;
+}
+
+.fps-fade-out {
+    animation: fps-fade-out var(--fps-animation-out) ease-in;
+}
+
+@keyframes fps-fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fps-fade-out {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+}
+
+.fps-slide-up {
+    animation: fps-slide-up var(--fps-animation-in) ease-out;
+}
+
+.fps-slide-down {
+    animation: fps-slide-down var(--fps-animation-out) ease-in;
+}
+
+@keyframes fps-slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fps-slide-down {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
+}
+
+/* ── Print-friendly adjustments ──────────────────────────────── */
+@media print {
+    .fps-admin-wrap {
+        background: white !important;
+        color: #222 !important;
+    }
+    
+    .fps-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    
+    .fps-stat-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+    
+    .fps-btn {
+        background: #fff !important;
+        color: #222 !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+    }
+    
+    .fps-spinner {
+        display: none !important;
+    }
+    
+    .fps-toggle-slider::before {
+        background: #fff !important;
+    }
+}
+
+/* ── RTL Specific Adjustments ───────────────────────────────── */
+/* Ensure proper icon flipping and spacing in RTL context */
+.fps-admin-wrap [dir="rtl"] .fps-btn .svg-icon,
+.fps-admin-wrap [dir="rtl"] .fps-unit-btn .svg-icon {
+    transform: scaleX(-1);
+}
+
+/* Fix text alignment in specific RTL contexts */
+.fps-admin-wrap [dir="rtl"] .fps-form-label {
+    text-align: right;
+}
+
+.fps-admin-wrap [dir="rtl"] .fps-stat-number,
+.fps-admin-wrap [dir="rtl"] .fps-preview-price {
+    text-align: center;
+    direction: ltr; /* Keep numbers LTR for readability */
+}
+
+/* ── Final Touch - Smooth Scrolling ─────────────────────────── */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ── Accessibility Enhancements ──────────────────────────────── */
+/* Ensure sufficient contrast ratios */
+.fps-btn-primary,
+.fps-btn-success,
+.fps-btn-danger,
+.fps-btn-info {
+    color: white;
+}
+
+/* Ensure touch targets are adequate */
+.fps-btn,
+.fps-unit-btn,
+.fps-toggle-switch {
+    min-height: 44px;
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .fps-spinner {
+        animation: none;
+    }
+}
