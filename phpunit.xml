@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    bootstrap="tests/bootstrap.php"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    failOnRisky="true"
+    failOnWarning="true"
+    verbose="true"
+    processIsolation="false"
+    stopOnFailure="false"
+    executionOrder="default"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    backupGlobals="true"
+    backupStaticAttributes="false"
+    cacheResultFile=".phpunit.result.cache"
+>
+    <testsuites>
+        <testsuite name="unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <const name="WP_DEBUG" value="true"/>
+        <const name="FPS_VERSION" value="2.0.0"/>
+    </php>
+    <coverage>
+        <include>
+            <directory>includes</directory>
+        </include>
+        <exclude>
+            <directory>includes/Admin</directory>
+            <directory>includes/API/Providers</directory>
+            <directory>includes/Core/Cron_Manager.php</directory>
+            <directory>includes/Core/Cache_Purger.php</directory>
+            <file>includes/Engine/index.php</file>
+            <file>includes/Admin/index.php</file>
+            <file>includes/Integrations/index.php</file>
+            <file>includes/API/index.php</file>
+            <file>includes/API/Providers/index.php</file>
+            <file>includes/Licensing/index.php</file>
+            <file>includes/Helpers/index.php</file>
+            <file>includes/Queue/index.php</file>
+            <file>includes/Core/index.php</file>
+        </exclude>
+        <report>
+            <html>
+                <directory>coverage/html</directory>
+            </html>
+            <text>
+                <file>coverage/coverage.txt</file>
+            </text>
+            <cobertura>
+                <directory>coverage/cobertura.xml</directory>
+            </cobertura>
+        </report>
+    </coverage>
+</phpunit>
